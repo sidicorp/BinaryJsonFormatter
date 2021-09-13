@@ -14,7 +14,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Binary JSON Formatter
+          Binary JSON Formatter (fork)
         </a>
       </header>
       <div className="App-container">
