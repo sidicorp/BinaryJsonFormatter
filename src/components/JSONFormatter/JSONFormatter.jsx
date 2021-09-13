@@ -97,19 +97,12 @@ export class JSONFormatter extends Component {
     return outputText
   }
 
-  getJoke() {
-    fetch('https://geek-jokes.sameerkumar.website/api?format=json')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({ jobText: responseJson.joke })
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  getInitialText() {
+    this.setState({ jobText: `Date: ${new Date()}` })    
   }
 
   componentWillMount() {
-    this.getJoke();
+    this.getInitialText();
   }
 
   UNSAFE_componentWillMount() {
