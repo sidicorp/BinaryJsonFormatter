@@ -1,3 +1,5 @@
-# BinaryJsonFormatter
+# BinaryJsonFormatter (fork)
 
-Deployed to https://deserializerv2.azurewebsites.net
+Deployed to https://hashtagchris-binaryjsonformatter-fork.azurewebsites.net
+
+Container image published to https://hub.docker.com/r/hashtagchris/binary-json-formatter-fork
