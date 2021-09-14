@@ -6,7 +6,25 @@ on:
     branches: [ master ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
+  create-issue:
+    name: Create deploy tracking issue
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/github-script@v4
+      with:
+        script: |
+            await github.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `${context.ref} (${context.sha}) being deployed`,
+              body: `ref: ${context.ref}\nsha: ${context.sha}\nactor: ${context.actor}`,
+            })
+
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
@@ -20,3 +38,4 @@ jobs:
         password: ${{secrets.DOCKER_ACCESS_TOKEN}}
         repository: hashtagchris/binary-json-formatter-fork
         tags: latest
+        
