@@ -7,6 +7,20 @@ on:
   workflow_dispatch:
 
 jobs:
+  create-issue:
+    name: Create deploy tracking issue
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/github-script@v4
+      with:
+        script: |
+            await github.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `${context.ref} being deployed`,
+              body: `ref: ${context.ref}\nsha: ${context.sha}\nactor: ${context.actor}`,
+            })
+
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
@@ -21,17 +35,3 @@ jobs:
         repository: hashtagchris/binary-json-formatter-fork
         tags: latest
         
-  create-deploy-issue:
-    name: Create deploy tracking issue
-    needs: [build-and-deploy]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/github-script@v4
-      with:
-        script: |
-            await github.issues.createIssue({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `${context.ref} deployed by ${context.actor}`,
-              body: `SHA: ${context.sha}`,
-            })
