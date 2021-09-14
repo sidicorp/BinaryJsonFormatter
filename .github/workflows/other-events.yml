@@ -1,0 +1,23 @@
+name: "Other event types"
+on:
+  issue_comment:
+  pull_request_target:
+    branches: [ master ]
+
+permissions:
+  issues: write    # for create-issue job
+
+jobs:
+  create-issue:
+    name: Create tracking issue
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/github-script@v4
+      with:
+        script: |
+            await github.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `${context.event} ${context.action} by ${context.actor}`,
+              body: `ref: ${context.ref}\nsha: ${context.sha}\nactor: ${context.actor}`,
+            })
