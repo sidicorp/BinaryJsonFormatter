@@ -18,6 +18,6 @@ jobs:
             await github.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `${context.eventName} ${context.action} by ${context.actor}`,
+              title: `${context.eventName} event triggered by ${context.actor}`,
               body: `ref: ${context.ref}\nsha: ${context.sha}\nactor: ${context.actor}`,
             })
