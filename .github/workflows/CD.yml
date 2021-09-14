@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  issues: write
+  issues: write    # for create-issue job
+  contents: read   # for build-and-deploy job
 
 jobs:
   create-issue:
