@@ -6,6 +6,10 @@ on:
     branches: [ master ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   create-issue:
     name: Create deploy tracking issue
@@ -17,7 +21,7 @@ jobs:
             await github.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `${context.ref} being deployed`,
+              title: `${context.ref} (${context.sha}) being deployed`,
               body: `ref: ${context.ref}\nsha: ${context.sha}\nactor: ${context.actor}`,
             })
 
