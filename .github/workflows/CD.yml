@@ -38,4 +38,5 @@ jobs:
         password: ${{secrets.DOCKER_ACCESS_TOKEN}}
         repository: hashtagchris/binary-json-formatter-fork
         tags: latest
-        
+        cache-from: type=registry,ref=hashtagchris/binary-json-formatter-fork:latest
+        cache-to: type=inline
