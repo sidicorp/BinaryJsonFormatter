@@ -5,10 +5,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
+    environment:
+      name: review-lab
+      url: https://hashtagchris.github.io/BinaryJsonFormatter
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
