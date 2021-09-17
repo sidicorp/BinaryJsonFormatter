@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy-to-review-lab:
-    if: github.actor != "dependabot[bot]"
+    if: github.actor != 'dependabot[bot]'
     permissions:
       contents: write
 
