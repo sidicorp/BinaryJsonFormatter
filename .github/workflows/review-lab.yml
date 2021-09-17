@@ -4,14 +4,17 @@ on:
     branches: [ master ]
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  build:
+  deploy-to-review-lab:
+    if: github.actor != "dependabot[bot]"
+    permissions:
+      contents: write
+
+    # no environment secrets or protection rules so far
     environment:
       name: review-lab
       url: https://hashtagchris.github.io/BinaryJsonFormatter
+    
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
