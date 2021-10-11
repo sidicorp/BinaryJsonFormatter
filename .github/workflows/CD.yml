@@ -22,7 +22,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: `${context.ref} (${context.sha}) being deployed`,
-              body: `ref: ${context.ref}\nsha: ${context.sha}\nactor: ${context.actor}`,
+              body: `ref: ${context.ref}\nsha: ${context.sha}\nactor: ${context.actor}\nevent:${context.eventName}`,
             })
 
   build-and-deploy:
