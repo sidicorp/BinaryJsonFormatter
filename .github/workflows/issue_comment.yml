@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: cat $GITHUB_EVENT_PATH
-      - run: cat ${{ github.event.issue.number }}
+      - run: echo ${{ github.event.issue.number }}
       - uses: actions/checkout@v2
         with:
           ref: "refs/pulls/merge/${{ github.event.issue.number }}"
