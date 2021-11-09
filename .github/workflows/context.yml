@@ -1,0 +1,16 @@
+name: context
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+  deployment:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: cat $GITHUB_ACTOR
+      - run: cat $GITHUB_EVENT_PATH
+      - uses: actions/checkout@v2
