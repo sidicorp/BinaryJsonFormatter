@@ -11,6 +11,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: cat $GITHUB_ACTOR
+      - run: echo $GITHUB_ACTOR
       - run: cat $GITHUB_EVENT_PATH
       - uses: actions/checkout@v2
