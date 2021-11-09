@@ -10,4 +10,4 @@ jobs:
       - run: echo ${{ github.event.issue.number }}
       - uses: actions/checkout@v2
         with:
-          ref: "refs/pulls/merge/${{ github.event.issue.number }}"
+          ref: "refs/pulls/${{ github.event.issue.number }}/merge"
