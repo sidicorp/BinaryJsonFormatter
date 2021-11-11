@@ -4,7 +4,7 @@ on:
   push:
   pull_request:
   workflow_dispatch:
-  deployment:
+  deployment:  # triggered by secrets.yml, which uses `environment`
   deployment_status:
   issue_comment:
   registry_package:
