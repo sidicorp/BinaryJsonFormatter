@@ -1,0 +1,33 @@
+name: ghcr
+on:
+  create:
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-and-publish:
+    name: Build and Publish to GHCR
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.3.1
+              
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1 
+      with:
+          registry: ghcr.io
+          username: hashtagchris
+          password: ${{ secrets.GITHUB_TOKEN }}
+          
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/hashtagchris/binary-json-formatter-fork:latest
